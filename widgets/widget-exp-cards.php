@@ -46,6 +46,7 @@ class Expanding_Cards_Widget extends \Elementor\Widget_Base {
                 'dynamic' => [
                     'active' => true,
                 ],
+                'description' => __( 'You can upload a maximum of 6 images. If you add more, they will not be displayed.', 'expanding-cards-plugin' ),
             ]
         );
 
@@ -77,6 +78,8 @@ class Expanding_Cards_Widget extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
         $gallery = $settings['gallery'];
 
+        // Limit to 6 images
+        $gallery = array_slice($gallery, 0, 6);
         ?>
         <style>
             .expand-cont {
@@ -103,7 +106,7 @@ class Expanding_Cards_Widget extends \Elementor\Widget_Base {
             }
 
             @media (max-width: 786px) {
-                .exp-panel:nth-of-type(4), .exp-panel:nth-of-type(5), ..exp-panel:nth-of-type(6) {
+                .exp-panel:nth-of-type(4), .exp-panel:nth-of-type(5), .exp-panel:nth-of-type(6) {
                     display: none;
                 }
                 .exp-panel{
